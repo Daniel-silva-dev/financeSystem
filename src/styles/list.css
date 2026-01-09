@@ -1,0 +1,41 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.transaction {
+  background: var(--card);
+  padding: 12px;
+  border-radius: var(--radius);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.transaction .value {
+  font-weight: 600;
+}
+
+.transaction.entrada .value {
+  color: var(--success);
+}
+
+.transaction.saida .value {
+  color: var(--danger);
+}
+
+.transaction button {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .transaction {
+    grid-template-columns: 2fr 1fr auto;
+  }
+}

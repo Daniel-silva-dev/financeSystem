@@ -1,0 +1,51 @@
+.transaction-form {
+  background: var(--card);
+  padding: 16px;
+  border-radius: var(--radius);
+  display: grid;
+  gap: 12px;
+  box-shadow: 0 10px 15px -10px rgba(0, 0, 0, 0.1);
+}
+
+.form-input,
+.form-select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  font-size: 14px;
+  background: var(--background);
+}
+
+.form-input:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.form-button {
+  margin-top: 8px;
+  padding: 12px;
+  border-radius: var(--radius);
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.form-button:hover {
+  opacity: 0.9;
+}
+
+@media (min-width: 768px) {
+  .transaction-form {
+    grid-template-columns: repeat(4, 1fr);
+    align-items: end;
+  }
+
+  .form-button {
+    grid-column: span 4;
+  }
+}

@@ -1,0 +1,81 @@
+.transaction-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: var(--radius);
+  background: var(--card);
+  margin-bottom: 8px;
+  box-shadow: 0 6px 12px -8px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.transaction-desc {
+  font-size: 14px;
+}
+
+.transaction-category {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.transaction-value {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.transaction-value.entrada {
+  color: #16a34a;
+}
+
+.transaction-value.saida {
+  color: #dc2626;
+}
+
+.transaction-remove {
+  background: transparent;
+  border: none;
+  color: #6b7280;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.transaction-remove:hover {
+  color: #dc2626;
+}
+.transaction-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+/* Empty state */
+.empty-state {
+  background: var(--card);
+  padding: 24px;
+  border-radius: var(--radius);
+  text-align: center;
+  color: #6b7280;
+}
+
+.empty-state p {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.empty-state span {
+  font-size: 13px;
+}
+
+@media (min-width: 768px) {
+  .transaction-item {
+    grid-template-columns: 2fr 1fr auto;
+  }
+}

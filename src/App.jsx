@@ -2,6 +2,7 @@ import { useTransactions } from "./hooks/useTransactions";
 import TransactionForm from "./components/TransactionForm";
 import TransactionList from "./components/TransactionList";
 import MonthSelector from "./components/MonthSelector";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   const {
@@ -10,7 +11,9 @@ function App() {
     removeTransaction,
     month,
     setMonth,
-    saldo
+    saldo,
+    totalEntradas,
+    totalSaidas
   } = useTransactions();
 
   return (
@@ -19,12 +22,13 @@ function App() {
 
       <MonthSelector month={month} setMonth={setMonth} />
 
-      <TransactionForm onSubmit={addTransaction} />
+      <Dashboard
+        entradas={totalEntradas}
+        saidas={totalSaidas}
+        saldo={saldo}
+      />
 
-      <p>
-        Saldo do mês: R${" "}
-        {saldo.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-      </p>
+      <TransactionForm onSubmit={addTransaction} />
 
       <TransactionList
         transactions={transactions}

@@ -7,17 +7,29 @@ export default function MonthSelector({ month, setMonth }) {
   }
 
   return (
-    <div>
-      <button onClick={() => changeMonth(-1)}>◀</button>
+    <div className="month-selector">
+      <button
+        className="month-button"
+        onClick={() => changeMonth(-1)}
+        aria-label="Mês anterior"
+      >
+        ◀
+      </button>
 
-      <strong>
+      <strong className="month-label">
         {new Date(month + "-01").toLocaleDateString("pt-BR", {
           month: "long",
           year: "numeric"
         })}
       </strong>
 
-      <button onClick={() => changeMonth(1)}>▶</button>
+      <button
+        className="month-button"
+        onClick={() => changeMonth(1)}
+        aria-label="Próximo mês"
+      >
+        ▶
+      </button>
     </div>
   );
 }
