@@ -28,7 +28,8 @@ export default function TransactionForm({ onSubmit }) {
       descricao,
       valor: Number(valor),
       categoria,
-      data: getTodayLocalDate()
+      data: getTodayLocalDate(),
+      importante: false
     });
 
     setDescricao("");

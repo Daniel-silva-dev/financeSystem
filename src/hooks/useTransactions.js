@@ -5,8 +5,21 @@ const STORAGE_KEY = "finance_transactions";
 export function useTransactions() {
   const [transactions, setTransactions] = useState(() => {
     const stored = localStorage.getItem(STORAGE_KEY);
+    
     return stored ? JSON.parse(stored) : [];
+
   });
+  
+  function toggleImportante(id) {
+  setTransactions(prev =>
+    prev.map(transaction =>
+      transaction.id === id
+        ? { ...transaction, importante: !transaction.importante }
+        : transaction
+    )
+  );
+}
+
 
     function getCurrentMonth() {
     const today = new Date();
@@ -16,7 +29,6 @@ export function useTransactions() {
     }
 
     const [month, setMonth] = useState(getCurrentMonth());
-    console.log( month);
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(transactions));
@@ -47,6 +59,7 @@ export function useTransactions() {
 
   const saldo = totalEntradas - totalSaidas;
 
+
   return {
     transactions: filteredTransactions,
     addTransaction,
@@ -55,6 +68,7 @@ export function useTransactions() {
     setMonth,
     totalEntradas,
     totalSaidas,
-    saldo
+    saldo,
+    toggleImportante
   };
 }

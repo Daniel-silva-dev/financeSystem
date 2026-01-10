@@ -41,7 +41,7 @@
   background: transparent;
   border: none;
   color: #6b7280;
-  font-size: 12px;
+  font-size: 18px;
   cursor: pointer;
 }
 
@@ -73,6 +73,30 @@
 .empty-state span {
   font-size: 13px;
 }
+.transaction-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Botão estrela */
+.important-btn {
+  background: transparent;
+  border: none;
+  font-size: 26px;
+  cursor: pointer;
+  color: #9ca3af;
+}
+
+.important-btn.active {
+  color: #f59e0b;
+}
+
+/* Destaque visual da transação importante */
+.transaction-item.importante {
+  border-left: 4px solid #f59e0b;
+  background: #fffbeb;
+}
+
 
 @media (min-width: 768px) {
   .transaction-item {

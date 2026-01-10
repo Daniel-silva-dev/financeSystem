@@ -13,7 +13,8 @@ function App() {
     setMonth,
     saldo,
     totalEntradas,
-    totalSaidas
+    totalSaidas,
+    toggleImportante
   } = useTransactions();
 
   return (
@@ -33,6 +34,7 @@ function App() {
       <TransactionList
         transactions={transactions}
         onRemove={removeTransaction}
+        onToggleImportante={toggleImportante}
       />
     </div>
   );
