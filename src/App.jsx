@@ -3,6 +3,7 @@ import TransactionForm from "./components/TransactionForm";
 import TransactionList from "./components/TransactionList";
 import MonthSelector from "./components/MonthSelector";
 import Dashboard from "./components/Dashboard";
+import AISummary from "./components/IASummary";
 
 function App() {
   const {
@@ -36,6 +37,7 @@ function App() {
         onRemove={removeTransaction}
         onToggleImportante={toggleImportante}
       />
+      <AISummary transactions={transactions} />
     </div>
   );
 }

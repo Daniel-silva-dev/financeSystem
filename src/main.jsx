@@ -9,6 +9,7 @@ import "./styles/form.css";
 import "./styles/list.css";
 import "./styles/month-selector.css";
 import "./styles/transictions.css";
+import "./styles/monthlySummary.css";
 
 
 createRoot(document.getElementById('root')).render(

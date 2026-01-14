@@ -1,0 +1,6 @@
+.monthly-summary {
+  background: var(--card);
+  padding: 16px;
+  border-radius: var(--radius);
+  margin-top: 24px;
+}
