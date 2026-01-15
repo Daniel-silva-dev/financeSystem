@@ -5,7 +5,7 @@ import { HfInference } from "@huggingface/inference";
 
 dotenv.config();
 
-/* 🔍 DEBUG CRÍTICO */
+/* 🔍 DEBUG */
 console.log("🚀 INDEX CORRETO CARREGADO");
 console.log("HF_API_KEY TYPE:", typeof process.env.HF_API_KEY);
 
@@ -13,48 +13,62 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-/* ✅ CLIENTE HF CORRETO */
 const hf = new HfInference(process.env.HF_API_KEY);
 
 app.post("/api/ai-summary", async (req, res) => {
   try {
     const { summary } = req.body;
 
-    if (!summary) {
-      return res.status(400).json({ error: "Resumo não enviado" });
+    /* ✅ VALIDA PRIMEIRO */
+    if (!summary || typeof summary !== "object") {
+      return res.status(400).json({ error: "Resumo inválido ou não enviado" });
     }
 
-    const prompt = `
-Você é um assistente financeiro pessoal.
+    /* ✅ TRANSFORMA OBJETO EM TEXTO QUE IA ENTENDE */
+    const summaryText = JSON.stringify(summary, null, 2);
+      const prompt = `
+      Você é um assistente financeiro profissional.
 
-Resumo financeiro do mês:
-${summary}
+      Abaixo está um resumo financeiro em formato JSON:
+      ${summaryText}
 
-Tarefas:
-- Gere uma análise clara e objetiva
-- Destaque gastos obrigatórios
-- Identifique excessos
-- Sugira melhorias práticas para o próximo mês
-`;
+      Gere uma análise ORGANIZADA seguindo exatamente este formato:
 
-    /* 🧠 CHAMADA DE IA FUNCIONAL */
+      ### 📊 Visão Geral
+      (resumo curto do mês)
+
+      ### 💸 Gastos Obrigatórios
+      - item: valor
+      - item: valor
+
+      ### ⚠️ Pontos de Atenção
+      - excessos ou alertas claros
+
+      ### ✅ Recomendações Práticas
+      - ações simples e objetivas
+
+      Regras:
+      - Use listas
+      - Frases curtas
+      - Português claro
+      - Não repita os dados em JSON
+      - o resumo deve ter no máximo 600 palavras
+      `;
+
+
     const response = await hf.chatCompletion({
       model: "deepseek-ai/DeepSeek-V3-0324",
       messages: [
-        {
-          role: "system",
-          content: "Você é um assistente financeiro pessoal."
-        },
         {
           role: "user",
           content: prompt
         }
       ],
-      max_tokens: 300
+      max_tokens: 600
     });
 
     const result =
-      response?.choices?.[0]?.message?.content ||
+      response?.choices?.[0]?.message?.content ??
       "Não foi possível gerar a análise.";
 
     res.json({ result });

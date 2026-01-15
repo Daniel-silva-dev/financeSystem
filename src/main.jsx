@@ -10,6 +10,7 @@ import "./styles/list.css";
 import "./styles/month-selector.css";
 import "./styles/transictions.css";
 import "./styles/monthlySummary.css";
+import "./styles/IASummary.css";
 
 
 createRoot(document.getElementById('root')).render(

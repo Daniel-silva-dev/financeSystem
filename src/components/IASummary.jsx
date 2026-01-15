@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { generateMonthlySummary } from "../utils/monthlySummary";
+import ReactMarkdown from "react-markdown";
 
 export default function AISummary({ transactions }) {
   const [result, setResult] = useState("");
@@ -13,14 +14,13 @@ export default function AISummary({ transactions }) {
     try {
       const summary = generateMonthlySummary(transactions);
 
-        const response = await fetch("http://localhost:3333/api/ai-summary", {
+      const response = await fetch("http://localhost:3333/api/ai-summary", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({ summary })
-        });
-
+      });
 
       const data = await response.json();
 
@@ -30,23 +30,37 @@ export default function AISummary({ transactions }) {
 
       setResult(data.result);
     } catch (err) {
-      setError("Erro ao conectar com o servidor" + err.message);
+      setError("Erro ao conectar com o servidor: " + err.message);
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <section className="monthly-summary">
-      <h3>Resumo inteligente</h3>
+    <section className="ai-summary-container">
+      <h3 className="ai-title">Resumo inteligente</h3>
 
-      <button onClick={handleGenerate}>
-        Gerar análise com IA
+      <button
+        className="ai-button"
+        onClick={handleGenerate}
+        disabled={loading}
+      >
+        {loading ? (
+          <span className="loading-text">
+            Analisando<span className="dots"></span>
+          </span>
+        ) : (
+          "Gerar análise com IA"
+        )}
       </button>
 
-      {loading && <p>Analisando...</p>}
-      {error && <p className="error">{error}</p>}
-      {result && <p>{result}</p>}
+      {error && <p className="ai-error">{error}</p>}
+
+      {result && (
+        <div className="ai-result">
+          <ReactMarkdown>{result}</ReactMarkdown>
+        </div>
+      )}
     </section>
   );
 }

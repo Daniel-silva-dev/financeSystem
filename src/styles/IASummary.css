@@ -1,0 +1,134 @@
+/* ===== VARIÁVEIS (alinha com o resto do sistema) ===== */
+:root {
+  --primary: #2563eb;
+  --primary-hover: #1e40af;
+  --bg-card: #f9fafb;
+  --text-main: #111827;
+  --text-muted: #6b7280;
+  --danger: #dc2626;
+  --radius: 10px;
+}
+
+/* ===== CONTAINER ===== */
+.ai-summary-container {
+  background: var(--bg-card);
+  padding: 16px;
+  border-radius: var(--radius);
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ===== TÍTULO ===== */
+.ai-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* ===== BOTÃO ===== */
+.ai-button {
+  width: 100%;
+  padding: 12px;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.ai-button:hover {
+  background: var(--primary-hover);
+}
+
+.ai-button:active {
+  transform: scale(0.97);
+}
+
+.ai-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ===== LOADING ===== */
+.loading-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  animation: pulse 1.2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+/* ===== DOTS ANIMADOS ===== */
+.dots::after {
+  content: "";
+  animation: dots 1.5s steps(3, end) infinite;
+}
+
+@keyframes dots {
+  0% { content: ""; }
+  33% { content: "."; }
+  66% { content: ".."; }
+  100% { content: "..."; }
+}
+
+/* ===== ERRO ===== */
+.ai-error {
+  color: var(--danger);
+  font-size: 14px;
+}
+
+/* ===== RESULTADO ===== */
+.ai-result {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-main);
+}
+
+.ai-result p {
+  margin-bottom: 8px;
+}
+
+.ai-result ul {
+  padding-left: 16px;
+}
+
+.ai-result li {
+  margin-bottom: 6px;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (min-width: 600px) {
+  .ai-summary-container {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ai-title {
+    font-size: 18px;
+  }
+
+  .ai-button {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ai-summary-container {
+    max-width: 680px;
+  }
+
+  .ai-result {
+    font-size: 15px;
+  }
+}
