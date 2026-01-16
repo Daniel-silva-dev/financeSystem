@@ -7,7 +7,7 @@ export default function MonthSelector({ month, setMonth }) {
   }
 
   return (
-    <div className="month-selector">
+    <div id='dashboard' className="month-selector">
       <button
         className="month-button"
         onClick={() => changeMonth(-1)}

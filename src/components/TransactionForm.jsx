@@ -39,7 +39,7 @@ export default function TransactionForm({ onSubmit }) {
   }
 
   return (
-    <form className="transaction-form" onSubmit={handleSubmit}>
+    <form id='transacoes' className="transaction-form" onSubmit={handleSubmit}>
       <select
         className="form-select"
         value={tipo}

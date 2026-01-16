@@ -11,6 +11,8 @@ import "./styles/month-selector.css";
 import "./styles/transictions.css";
 import "./styles/monthlySummary.css";
 import "./styles/IASummary.css";
+import "./styles/header.css";
+import "./styles/footer.css";
 
 
 createRoot(document.getElementById('root')).render(

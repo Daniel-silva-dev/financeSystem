@@ -37,7 +37,7 @@ export default function AISummary({ transactions }) {
   }
 
   return (
-    <section className="ai-summary-container">
+    <section id='resumo' className="ai-summary-container">
       <h3 className="ai-title">Resumo inteligente</h3>
 
       <button

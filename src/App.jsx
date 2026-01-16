@@ -4,6 +4,9 @@ import TransactionList from "./components/TransactionList";
 import MonthSelector from "./components/MonthSelector";
 import Dashboard from "./components/Dashboard";
 import AISummary from "./components/IASummary";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
 
 function App() {
   const {
@@ -20,7 +23,7 @@ function App() {
 
   return (
     <div>
-      <h1>Controle Financeiro</h1>
+      <Header />
 
       <MonthSelector month={month} setMonth={setMonth} />
 
@@ -38,6 +41,8 @@ function App() {
         onToggleImportante={toggleImportante}
       />
       <AISummary transactions={transactions} />
+
+      <Footer />
     </div>
   );
 }
