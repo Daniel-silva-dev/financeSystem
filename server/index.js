@@ -5,8 +5,8 @@ import { HfInference } from "@huggingface/inference";
 
 dotenv.config();
 
-/* 🔍 DEBUG */
-console.log("🚀 INDEX CORRETO CARREGADO");
+/*  DEBUG */
+console.log(" INDEX CORRETO CARREGADO");
 console.log("HF_API_KEY TYPE:", typeof process.env.HF_API_KEY);
 
 const app = express();

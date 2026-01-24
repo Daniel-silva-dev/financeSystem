@@ -7,15 +7,15 @@ export default function Footer() {
 
       <div className="footer-links">
         <a
-          href="https://instagram.com/seu_instagram"
+          href="mailto:danielsilvadev7@gmail.com"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Instagram
+          E-mail
         </a>
 
         <a
-          href="https://wa.me/5599999999999"
+          href="https://wa.me/55084992035664"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -23,7 +23,7 @@ export default function Footer() {
         </a>
 
         <a
-          href="https://linkedin.com/in/seu_linkedin"
+          href="https://www.linkedin.com/in/danieldev5g/"
           target="_blank"
           rel="noopener noreferrer"
         >
