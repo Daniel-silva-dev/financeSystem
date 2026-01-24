@@ -10,7 +10,14 @@ console.log("🚀 INDEX CORRETO CARREGADO");
 console.log("HF_API_KEY TYPE:", typeof process.env.HF_API_KEY);
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://daniel-silva-dev.github.io",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"]
+  })
+);
+
 app.use(express.json());
 
 const hf = new HfInference(process.env.HF_API_KEY);
