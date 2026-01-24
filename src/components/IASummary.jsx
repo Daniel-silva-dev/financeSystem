@@ -14,7 +14,7 @@ export default function AISummary({ transactions }) {
     try {
       const summary = generateMonthlySummary(transactions);
 
-      const response = await fetch("https://financesystem-sqqg.onrender.com/api/ai-summary", {
+      const response = await fetch("https://financesystem-sld9.onrender.com/api/ai-summary", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
