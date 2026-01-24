@@ -1,4 +1,4 @@
-/* ===== VARIÁVEIS (alinha com o resto do sistema) ===== */
+/* variaveis */
 :root {
   --primary: #2563eb;
   --primary-hover: #1e40af;
@@ -9,7 +9,7 @@
   --radius: 10px;
 }
 
-/* ===== CONTAINER ===== */
+
 .ai-summary-container {
   background: var(--bg-card);
   padding: 16px;
@@ -20,14 +20,13 @@
   gap: 12px;
 }
 
-/* ===== TÍTULO ===== */
+
 .ai-title {
   font-size: 16px;
   font-weight: 600;
   color: var(--text-main);
 }
 
-/* ===== BOTÃO ===== */
 .ai-button {
   width: 100%;
   padding: 12px;
@@ -54,7 +53,6 @@
   cursor: not-allowed;
 }
 
-/* ===== LOADING ===== */
 .loading-text {
   display: inline-flex;
   align-items: center;
@@ -68,7 +66,7 @@
   100% { opacity: 1; }
 }
 
-/* ===== DOTS ANIMADOS ===== */
+/*  DOTS ANIMADOS */
 .dots::after {
   content: "";
   animation: dots 1.5s steps(3, end) infinite;
@@ -81,13 +79,13 @@
   100% { content: "..."; }
 }
 
-/* ===== ERRO ===== */
+/* ERRO  */
 .ai-error {
   color: var(--danger);
   font-size: 14px;
 }
 
-/* ===== RESULTADO ===== */
+/*  RESULTADO */
 .ai-result {
   font-size: 14px;
   line-height: 1.6;
@@ -106,7 +104,6 @@
   margin-bottom: 6px;
 }
 
-/* ===== RESPONSIVIDADE ===== */
 @media (min-width: 600px) {
   .ai-summary-container {
     max-width: 500px;

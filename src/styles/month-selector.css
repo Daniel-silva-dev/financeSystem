@@ -1,4 +1,4 @@
-/* Mobile */
+
 .month-selector {
   display: flex;
   align-items: center;
@@ -23,7 +23,6 @@
   color: var(--primary);
 }
 
-/* Tablet */
 @media (min-width: 768px) {
   .month-selector {
     justify-content: center;

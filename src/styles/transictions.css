@@ -91,7 +91,7 @@
   color: #f59e0b;
 }
 
-/* Destaque visual da transação importante */
+
 .transaction-item.importante {
   border-left: 4px solid #f59e0b;
   background: #fffbeb;

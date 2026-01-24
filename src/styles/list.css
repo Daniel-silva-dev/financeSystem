@@ -33,7 +33,6 @@
   font-size: 16px;
 }
 
-/* Tablet */
 @media (min-width: 768px) {
   .transaction {
     grid-template-columns: 2fr 1fr auto;

@@ -53,14 +53,12 @@
 }
 
 
-/* Tablet */
 @media (min-width: 600px) {
   .dashboard {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Desktop */
 @media (min-width: 1024px) {
   .dashboard {
     grid-template-columns: repeat(3, 1fr);
@@ -97,7 +95,6 @@
   color: var(--primary);
 }
 
-/* Desktop text */
 @media (min-width: 768px) {
   .card-value {
     font-size: 22px;
