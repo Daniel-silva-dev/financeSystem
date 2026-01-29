@@ -13,6 +13,7 @@ import "./styles/monthlySummary.css";
 import "./styles/IASummary.css";
 import "./styles/header.css";
 import "./styles/footer.css";
+import "./styles/supportSection.css";
 
 
 createRoot(document.getElementById('root')).render(

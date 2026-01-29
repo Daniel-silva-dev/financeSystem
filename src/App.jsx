@@ -6,6 +6,7 @@ import Dashboard from "./components/Dashboard";
 import AISummary from "./components/IASummary";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import SupportSection from "./components/SupportSection";
 
 
 function App() {
@@ -41,6 +42,8 @@ function App() {
         onToggleImportante={toggleImportante}
       />
       <AISummary transactions={transactions} />
+
+      <SupportSection />
 
       <Footer />
     </div>
