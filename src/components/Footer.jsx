@@ -32,7 +32,7 @@ export default function Footer() {
       </div>
 
       <span className="footer-copy">
-        © {new Date().getFullYear()} FinanceSystem
+        © {new Date().getFullYear()} Controlly
       </span>
     </footer>
   );
