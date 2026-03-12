@@ -12,7 +12,7 @@ export default function Header() {
   return (
     <header className="app-header">
       <div className="header-content">
-        <h1 className="app-logo">Controlly</h1>
+        <h1 className="app-logo">FinanceSystem</h1>
 
         <nav className="header-nav">
           <button onClick={() => scrollToSection("dashboard")}>
