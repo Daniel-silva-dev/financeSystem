@@ -12,7 +12,7 @@ console.log("HF_API_KEY TYPE:", typeof process.env.HF_API_KEY);
 const app = express();
 app.use(
   cors({
-    origin: "https://daniel-silva-dev.github.io",
+    origin: 'https://financesystem.pages.dev',
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"]
   })
