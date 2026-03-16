@@ -84,7 +84,8 @@
   border: none;
   font-size: 26px;
   cursor: pointer;
-  color: #9ca3af;
+  color: hsl(218, 11%, 65%);
+  margin-right: 30px
 }
 
 .important-btn.active {
@@ -102,4 +103,7 @@
   .transaction-item {
     grid-template-columns: 2fr 1fr auto;
   }
+  .important-btn {
+  margin-right: 90px
+}
 }
