@@ -52,7 +52,7 @@ export default function TransactionForm({ onSubmit }) {
       <input
         className="form-input"
         type="text"
-        placeholder="Descrição"
+        placeholder="Categoria"
         value={descricao}
         onChange={e => setDescricao(e.target.value)}
       />
@@ -68,7 +68,7 @@ export default function TransactionForm({ onSubmit }) {
       <input
         className="form-input"
         type="text"
-        placeholder="Categoria"
+        placeholder="Descrição"
         value={categoria}
         onChange={e => setCategoria(e.target.value)}
       />
