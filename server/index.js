@@ -1,94 +1,112 @@
+
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { HfInference } from "@huggingface/inference";
+import { GoogleGenAI } from "@google/genai";
 
 dotenv.config();
 
-/*  DEBUG */
-console.log(" INDEX CORRETO CARREGADO");
-console.log("HF_API_KEY TYPE:", typeof process.env.HF_API_KEY);
-
 const app = express();
+
 app.use(
   cors({
-    origin: 'https://financesystem.pages.dev',
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"]
+    origin: [
+      "http://localhost:5173",
+      "http://127.0.0.1:5173",
+      "https://financesystem.pages.dev",
+    ],
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type"],
   })
 );
 
 app.use(express.json());
 
-const hf = new HfInference(process.env.HF_API_KEY);
+const apiKey = process.env.GEMINI_API_KEY;
+
+if (!apiKey) {
+  console.error("ERRO: GEMINI_API_KEY não foi configurada.");
+}
+
+const ai = apiKey ? new GoogleGenAI({ apiKey }) : null;
+
+app.get("/", (req, res) => {
+  res.json({ status: "Backend funcionando com Gemini" });
+});
 
 app.post("/api/ai-summary", async (req, res) => {
   try {
     const { summary } = req.body;
 
-    /* ✅ VALIDA PRIMEIRO */
     if (!summary || typeof summary !== "object") {
-      return res.status(400).json({ error: "Resumo inválido ou não enviado" });
+      return res.status(400).json({
+        error: "Resumo inválido ou não enviado.",
+      });
     }
 
-    /* ✅ TRANSFORMA OBJETO EM TEXTO QUE IA ENTENDE */
-    const summaryText = JSON.stringify(summary, null, 2);
-      const prompt = `
-      Você é um assistente financeiro profissional.
+    if (!ai) {
+      return res.status(500).json({
+        error: "API Key do Gemini não configurada no servidor.",
+      });
+    }
 
-      Abaixo está um resumo financeiro em formato JSON:
-      ${summaryText}
+    const prompt = `
+Você é um assistente financeiro profissional.
 
-      Gere uma análise ORGANIZADA seguindo exatamente este formato:
+Analise os dados financeiros abaixo:
+${JSON.stringify(summary, null, 2)}
 
-      ### 📊 Visão Geral
-      (resumo curto do mês)
+Gere uma análise em português seguindo este formato:
 
-      ### 💸 Gastos Obrigatórios
-      - item: valor
-      - item: valor
+### Visão Geral
+Resumo curto do mês.
 
-      ### ⚠️ Pontos de Atenção
-      - excessos ou alertas claros
+### Gastos Obrigatórios
+- Identifique os principais gastos e seus valores.
 
-      ### ✅ Recomendações Práticas
-      - ações simples e objetivas
+### Pontos de Atenção
+- Aponte excessos e possíveis problemas.
 
-      Regras:
-      - Use listas
-      - Frases curtas
-      - Português claro
-      - Não repita os dados em JSON
-      - o resumo deve ter no máximo 600 palavras
-      `;
+### Recomendações Práticas
+- Sugira ações simples e objetivas.
 
+Regras:
+- Use listas e frases curtas.
+- Não invente valores ausentes.
+- Não repita o JSON.
+- Máximo de 600 palavras.
+`;
 
-    const response = await hf.chatCompletion({
-      model: "deepseek-ai/DeepSeek-V3-0324",
-      messages: [
-        {
-          role: "user",
-          content: prompt
-        }
-      ],
-      max_tokens: 600
+    const response = await ai.models.generateContent({
+      model: "gemini-3.8-flash",
+      contents: prompt,
+      config: {
+        maxOutputTokens: 1000,
+      },
     });
 
-    const result =
-      response?.choices?.[0]?.message?.content ??
-      "Não foi possível gerar a análise.";
+    const result = response.text;
 
-    res.json({ result });
+    if (!result) {
+      throw new Error("A IA retornou uma resposta vazia.");
+    }
+
+    return res.json({ result });
   } catch (err) {
-    console.error("BACKEND ERROR:", err);
-    res.status(500).json({ error: "Erro interno no servidor" });
+    console.error("ERRO NA API DO GEMINI:", {
+      message: err.message,
+      status: err.status,
+      name: err.name,
+    });
+
+    return res.status(500).json({
+      error: "Falha ao gerar análise. Verifique os logs do servidor.",
+    });
   }
 });
 
 const PORT = process.env.PORT || 3333;
 
 app.listen(PORT, () => {
-  console.log("Servidor rodando na porta", PORT);
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
-
-
