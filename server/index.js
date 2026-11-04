@@ -77,15 +77,29 @@ Regras:
 - Máximo de 600 palavras.
 `;
 
-    const response = await ai.models.generateContent({
-      model: "gemini-3.8-flash",
-      contents: prompt,
-      config: {
-        maxOutputTokens: 1000,
-      },
-    });
+let response;
 
-    const result = response.text;
+try {
+  response = await ai.models.generateContent({
+    model: "gemini-3.8-flash",
+    contents: prompt,
+    config: {
+      maxOutputTokens: 1000,
+    },
+  });
+} catch (error) {
+  console.error("Gemini principal falhou. Tentando modelo alternativo...");
+
+  response = await ai.models.generateContent({
+    model: "gemini-2.5-flash",
+    contents: prompt,
+    config: {
+      maxOutputTokens: 1000,
+    },
+  });
+}
+
+const result = response.text;
 
     if (!result) {
       throw new Error("A IA retornou uma resposta vazia.");
