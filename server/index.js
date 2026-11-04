@@ -76,7 +76,6 @@ Regras:
 - Não repita o JSON.
 - Máximo de 600 palavras.
 `;
-
 let response;
 
 try {
@@ -91,12 +90,13 @@ try {
   console.error("Gemini principal falhou. Tentando modelo alternativo...");
 
   response = await ai.models.generateContent({
-    model: "gemini-2.5-flash",
+    model: "gemini-3.5-flash-lite",
     contents: prompt,
     config: {
       maxOutputTokens: 1000,
     },
   });
+  console.log(error)
 }
 
 const result = response.text;
