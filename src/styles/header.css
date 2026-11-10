@@ -1,57 +1,79 @@
-.header-nav button {
-  background: none;
-  border: none;
-  font-size: 14px;
-  font-weight: 500;
-  color: #374151;
-  cursor: pointer;
-  padding: 4px 8px;
-}
 
-.header-nav button:hover {
-  color: #2563eb;
-}
-
+/* HEADER */
 
 .app-header {
   width: 100%;
-  background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
+  background: rgba(21, 31, 50, 0.95);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(16px);
 }
 
 .header-content {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 14px 16px;
+  padding: 18px 32px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 24px;
 }
+
+/* LOGO */
 
 .app-logo {
-  font-size: 18px;
-  font-weight: 700;
-  color: #2563eb;
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  color: var(--primary);
+  white-space: nowrap;
+  transition: opacity var(--transition);
 }
 
-/* NAV */
+.app-logo:hover {
+  opacity: 0.8;
+}
+
+/* NAVEGAÇÃO */
+
 .header-nav {
   display: none;
-  gap: 16px;
+  align-items: center;
+  gap: 8px;
 }
 
-.header-nav a {
-  font-size: 14px;
-  color: #374151;
-  text-decoration: none;
+.header-nav a,
+.header-nav button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 9px 14px;
+  border-radius: var(--radius-sm);
+
+  background: transparent;
+  border: none;
+
+  font-size: 13px;
   font-weight: 500;
+  color: var(--muted);
+
+  text-decoration: none;
+  cursor: pointer;
+
+  transition: all var(--transition);
 }
 
-.header-nav a:hover {
-  color: #2563eb;
+.header-nav a:hover,
+.header-nav button:hover {
+  color: var(--text);
+  background: var(--card-hover);
 }
 
+/* RESPONSIVIDADE */
 
 @media (min-width: 768px) {
   .header-nav {
@@ -59,6 +81,32 @@
   }
 
   .app-logo {
-    font-size: 20px;
+    font-size: 23px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    padding: 16px 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-content {
+    padding: 15px 16px;
+  }
+
+  .app-logo {
+    font-size: 19px;
+  }
+
+  .header-nav {
+    gap: 4px;
+  }
+
+  .header-nav a,
+  .header-nav button {
+    padding: 8px;
+    font-size: 12px;
   }
 }

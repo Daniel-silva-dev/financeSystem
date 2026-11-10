@@ -1,42 +1,176 @@
+
+/* LAYOUT PRINCIPAL */
+
 #root {
-  max-width: 1280px;
+  width: 100%;
+  max-width: 1440px;
+  min-height: 100vh;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 32px;
+  text-align: left;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.app-container {
+  width: 100%;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.main-content {
+  width: 100%;
+}
+
+/* ÁREA DOS FILTROS */
+
+.filters-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.filters-container .month-selector {
+  margin-bottom: 0;
+  min-height: 66px;
+}
+
+/* FILTRO POR PERÍODO */
+
+.date-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  margin-bottom: 0;
+}
+
+.date-filter h3 {
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.date-filter-fields {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  align-items: end;
+}
+
+.date-filter-input {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.date-filter-input label {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.date-filter-input input {
+  width: 100%;
+  min-width: 0;
+  height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-input);
+  color: var(--text);
+  color-scheme: dark;
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  transition: border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.date-filter-input input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(100, 140, 255, 0.15);
+}
+
+/* BOTÃO LIMPAR */
+
+.clear-date-filter {
+  width: 100%;
+  min-height: 40px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-secondary);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.clear-date-filter:hover {
+  color: var(--danger);
+  border-color: var(--danger);
+  background: rgba(255, 100, 124, 0.08);
+}
+
+/* RESPONSIVIDADE */
+
+@media (min-width: 600px) {
+  .date-filter-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  to {
-    transform: rotate(360deg);
+
+  .clear-date-filter {
+    grid-column: 1 / -1;
+    width: fit-content;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media (min-width: 1024px) {
+  .filters-container {
+    grid-template-columns: minmax(250px, 0.8fr) minmax(0, 2fr);
+    align-items: stretch;
+  }
+
+  .filters-container .month-selector {
+    height: 100%;
+  }
+
+  .date-filter-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) auto;
+  }
+
+  .clear-date-filter {
+    grid-column: auto;
+    width: auto;
   }
 }
 
-.card {
-  padding: 2em;
+@media (max-width: 768px) {
+  #root {
+    padding: 22px;
+  }
 }
 
-.read-the-docs {
-  color: #888;
+@media (max-width: 480px) {
+  #root {
+    padding: 16px;
+  }
+
+  .date-filter {
+    padding: 16px;
+    border-radius: var(--radius);
+  }
+
+  .date-filter-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .clear-date-filter {
+    width: 100%;
+  }
 }

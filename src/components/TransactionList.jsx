@@ -1,6 +1,12 @@
+
 import TransactionItem from "./TransactionItem";
 
-export default function TransactionList({ transactions, onRemove, onToggleImportante }) {
+export default function TransactionList({
+  transactions,
+  onRemove,
+  onToggleImportante,
+  onEdit,
+}) {
   if (transactions.length === 0) {
     return (
       <div className="empty-state">
@@ -12,12 +18,13 @@ export default function TransactionList({ transactions, onRemove, onToggleImport
 
   return (
     <ul className="transaction-list">
-      {transactions.map(transaction => (
-       <TransactionItem
+      {transactions.map((transaction) => (
+        <TransactionItem
           key={transaction.id}
           transaction={transaction}
           onRemove={onRemove}
           onToggleImportante={onToggleImportante}
+          onEdit={onEdit}
         />
       ))}
     </ul>

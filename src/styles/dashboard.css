@@ -1,38 +1,101 @@
+
+/* DASHBOARD */
+
 .dashboard {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 12px;
-  margin-bottom: 24px;
-}
-.card {
-  background: var(--card);
-  padding: 16px;
-  border-radius: var(--radius);
-  box-shadow: 0 10px 15px -10px rgba(0, 0, 0, 0.1);
-  border-left: 5px solid transparent;
+  gap: 18px;
+  margin-bottom: 28px;
 }
 
+/* CARDS */
+
+.card {
+  position: relative;
+  overflow: hidden;
+  background: var(--card);
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+
+  min-height: 140px;
+
+  transition: transform var(--transition),
+              border-color var(--transition),
+              box-shadow var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: #35496a;
+  box-shadow: var(--shadow-hover);
+}
+
+/* DETALHE DECORATIVO */
+
+.card::after {
+  content: "";
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  right: -45px;
+  top: -55px;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.card.entrada::after {
+  background: var(--success);
+}
+
+.card.saida::after {
+  background: var(--danger);
+}
+
+.card.saldo::after {
+  background: var(--primary);
+}
+
+/* BORDA SUPERIOR */
+
 .card.entrada {
-  border-left-color: var(--success);
+  border-top: 3px solid var(--success);
 }
 
 .card.saida {
-  border-left-color: var(--danger);
+  border-top: 3px solid var(--danger);
 }
 
 .card.saldo {
-  border-left-color: var(--primary);
+  border-top: 3px solid var(--primary);
 }
+
+/* TÍTULOS */
 
 .card-title {
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 500;
   color: var(--muted);
-  margin-bottom: 4px;
+  letter-spacing: 0.2px;
 }
 
+/* VALORES */
+
 .card-value {
-  font-size: 20px;
-  font-weight: 600;
+  font-size: clamp(23px, 3vw, 29px);
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-top: 5px;
+  color: var(--text);
+  overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
 }
 
 .card-value.entrada {
@@ -49,54 +112,328 @@
 
 .card-value.saldo-negativo {
   color: var(--danger);
-  border-left-color: var(--danger);
+}
+
+/* DASHBOARD COMPLETO */
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  width: 100%;
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr);
+  gap: 18px;
+  width: 100%;
+}
+
+.chart-card {
+  min-width: 0;
+  padding: 22px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.chart-header {
+  margin-bottom: 22px;
+}
+
+.chart-header h3 {
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+
+.chart-header p {
+  color: var(--muted);
+  font-size: 12px;
+  margin: 0;
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.chart-legend span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.chart-legend i,
+.category-name i {
+  width: 9px;
+  height: 9px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.legend-entry {
+  background: #35c98a;
+}
+
+.legend-exit {
+  background: #ff647c;
+}
+
+.legend-balance {
+  background: #648cff;
+}
+
+/* GRÁFICO MENSAL */
+
+.monthly-chart-scroll {
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.monthly-chart-content {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  min-width: max-content;
+  min-height: 230px;
+  padding: 10px 4px 0;
+}
+
+.month-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 48px;
+  height: 230px;
+}
+
+.month-bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  height: 195px;
+  border-bottom: 1px solid var(--border);
+}
+
+.bar {
+  width: 11px;
+  min-height: 2px;
+  border-radius: 4px 4px 0 0;
+  transition: height 0.3s ease;
+}
+
+.entry-bar {
+  background: #35c98a;
+}
+
+.exit-bar {
+  background: #ff647c;
+}
+
+.balance-bar {
+  background: #648cff;
+}
+
+.negative-bar {
+  background: #ff647c;
+}
+
+.month-label-chart {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 10px;
+  white-space: nowrap;
+  text-transform: capitalize;
+}
+
+.chart-note {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* GRÁFICO DE CATEGORIAS */
+
+.donut-container {
+  display: flex;
+  justify-content: center;
+  padding: 8px 0 24px;
+}
+
+.donut-chart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.donut-chart::before {
+  content: "";
+  position: absolute;
+  inset: 24px;
+  border-radius: 50%;
+  background: var(--card);
+}
+
+.donut-center {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  max-width: 125px;
+  text-align: center;
+}
+
+.donut-center span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.donut-center strong {
+  color: var(--text);
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.category-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.category-name {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.category-name span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.category-values {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  white-space: nowrap;
+}
+
+.category-values strong {
+  color: var(--text);
+  font-size: 12px;
+}
+
+.category-values span {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.chart-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 900px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .chart-card {
+    padding: 16px;
+  }
+
+  .chart-note {
+    flex-direction: column;
+  }
+
+  .monthly-chart-content {
+    gap: 10px;
+  }
+
+  .month-column {
+    width: 44px;
+  }
+
+  .donut-chart {
+    width: 170px;
+    height: 170px;
+  }
 }
 
 
+/* RESPONSIVIDADE */
+
 @media (min-width: 600px) {
   .dashboard {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
   }
 }
 
 @media (min-width: 1024px) {
   .dashboard {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .card {
+    padding: 26px;
+    min-height: 155px;
   }
 }
 
-.card {
-  background: var(--card);
-  padding: 16px;
-  border-radius: var(--radius);
-  box-shadow: 0 8px 12px -8px rgba(0, 0, 0, 0.1);
-}
+@media (max-width: 480px) {
+  .dashboard {
+    gap: 12px;
+  }
 
-.card-title {
-  font-size: 13px;
-  color: var(--muted);
-}
+  .card {
+    padding: 19px;
+    min-height: 125px;
+  }
 
-.card-value {
-  font-size: 20px;
-  font-weight: 600;
-  margin-top: 6px;
-}
-
-.card-value.entrada {
-  color: var(--success);
-}
-
-.card-value.saida {
-  color: var(--danger);
-}
-
-.card-value.saldo {
-  color: var(--primary);
-}
-
-@media (min-width: 768px) {
   .card-value {
-    font-size: 22px;
+    font-size: 23px;
   }
 }

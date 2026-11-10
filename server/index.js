@@ -151,6 +151,7 @@ Regras:
       console.error(
         "Modelo principal indisponível. Iniciando fallback."
       );
+      console.log(errorPrincipal)
 
       // Tenta o modelo alternativo
       response = await gerarComRetry(

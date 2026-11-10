@@ -14,6 +14,7 @@ import "./styles/IASummary.css";
 import "./styles/header.css";
 import "./styles/footer.css";
 import "./styles/supportSection.css";
+import "./App.css";
 
 
 createRoot(document.getElementById('root')).render(

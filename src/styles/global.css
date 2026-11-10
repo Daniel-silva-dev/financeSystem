@@ -1,15 +1,45 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
 :root {
-  --bg: #f3f4f6;
-  --card: #ffffff;
+  /* Cores principais */
+  --bg: #0b1120;
+  --card: #151f32;
+  --card-hover: #1b2940;
 
-  --primary: #2563eb;
-  --success: #16a34a;
-  --danger: #dc2626;
+  --primary: #648cff;
+  --primary-hover: #5078f5;
+  --primary-light: rgba(100, 140, 255, 0.12);
 
-  --text: #111827;
-  --muted: #6b7280;
+  --success: #35c98a;
+  --success-light: rgba(53, 201, 138, 0.12);
 
-  --radius: 12px;
+  --danger: #ff647c;
+  --danger-light: rgba(255, 100, 124, 0.12);
+
+  /* Textos */
+  --text: #f1f5f9;
+  --muted: #8996aa;
+  --text-secondary: #b5c0d0;
+
+  /* Bordas */
+  --border: #26344b;
+  --border-light: #1e2a3d;
+
+  /* Elementos */
+  --bg-secondary: #101a2b;
+  --bg-input: #101a2b;
+
+  /* Sombras */
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+  --shadow-hover: 0 12px 35px rgba(0, 0, 0, 0.25);
+
+  /* Layout */
+  --radius: 14px;
+  --radius-sm: 9px;
+  --radius-lg: 20px;
+
+  --transition: 0.2s ease;
 }
 
 * {
@@ -18,9 +48,93 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.5;
+  min-height: 100vh;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+input,
+select,
+textarea {
+  color: var(--text);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--muted);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+::selection {
+  background: rgba(100, 140, 255, 0.3);
+  color: #fff;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #34445e;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* Transições */
+
+button,
+a,
+.card,
+.transaction-item {
+  transition: all var(--transition);
 }

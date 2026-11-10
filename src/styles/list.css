@@ -1,21 +1,37 @@
+
+/* LISTA DE TRANSAÇÕES */
+
 .list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
+  width: 100%;
 }
 
 .transaction {
-  background: var(--card);
-  padding: 12px;
-  border-radius: var(--radius);
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 8px;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  min-width: 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: border-color var(--transition), transform var(--transition);
+}
+
+.transaction:hover {
+  border-color: #3b4d68;
+  transform: translateY(-1px);
 }
 
 .transaction .value {
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
 .transaction.entrada .value {
@@ -27,14 +43,40 @@
 }
 
 .transaction button {
-  background: none;
-  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-secondary);
   color: var(--muted);
   font-size: 16px;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.transaction button:hover {
+  background: rgba(255, 100, 124, 0.1);
+  border-color: var(--danger);
+  color: var(--danger);
 }
 
 @media (min-width: 768px) {
   .transaction {
-    grid-template-columns: 2fr 1fr auto;
+    grid-template-columns: minmax(0, 2fr) minmax(100px, 1fr) auto;
+    padding: 18px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .transaction {
+    padding: 13px;
+    gap: 8px;
+  }
+
+  .transaction .value {
+    font-size: 13px;
   }
 }
