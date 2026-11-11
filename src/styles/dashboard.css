@@ -402,6 +402,145 @@
 }
 
 
+/* FILTRO DE PERÍODO DOS GRÁFICOS */
+
+.chart-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.chart-period-select {
+  min-height: 38px;
+  padding: 0 30px 0 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-input);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  outline: none;
+}
+
+.chart-period-select:focus {
+  border-color: var(--primary);
+}
+
+/* GRÁFICO DE MONTANHA */
+
+.mountain-chart {
+  grid-column: 1 / -1;
+}
+
+.mountain-total {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 20px;
+}
+
+.mountain-total span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.mountain-total strong {
+  color: var(--success);
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.mountain-total strong.negative-total {
+  color: var(--danger);
+}
+
+.mountain-chart-container {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.mountain-chart-container svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.mountain-grid-line {
+  stroke: var(--border);
+  stroke-width: 1;
+  stroke-dasharray: 5 6;
+  opacity: 0.8;
+}
+
+.mountain-line {
+  fill: none;
+  stroke: #648cff;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.mountain-point {
+  fill: #648cff;
+  stroke: var(--card);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+.mountain-labels {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 12px;
+  overflow: hidden;
+}
+
+.mountain-labels span {
+  color: var(--muted);
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.mountain-description {
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 600px) {
+  .chart-header {
+    flex-direction: column;
+  }
+
+  .chart-period-select {
+    width: 100%;
+  }
+
+  .mountain-chart-container {
+    height: 180px;
+  }
+
+  .mountain-total strong {
+    font-size: 22px;
+  }
+
+  .mountain-labels span {
+    font-size: 9px;
+  }
+}
+
+
 /* RESPONSIVIDADE */
 
 @media (min-width: 600px) {
